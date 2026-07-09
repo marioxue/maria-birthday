@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Maria 10岁生日派对清单 ⭐</title>
+<style>
+  :root{
+    --bg:#0b1026; --bg2:#131a3a; --card:rgba(255,255,255,.06);
+    --card2:rgba(255,255,255,.10); --line:rgba(255,255,255,.14);
+    --txt:#eaf0ff; --muted:#9fb0d8; --gold:#ffd76a; --pink:#ff8fc7;
+    --green:#5fe3a1; --blue:#7cc4ff; --red:#ff7a8a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--txt); background:radial-gradient(1200px 800px at 70% -10%,#1b2350 0%,var(--bg) 55%);
+    min-height:100vh; overflow-x:hidden;
+  }
+  /* starfield */
+  .stars,.stars2{position:fixed;inset:0;pointer-events:none;z-index:0;}
+  .stars{background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 80% 20%,#fff,transparent),
+    radial-gradient(1px 1px at 50% 60%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 35% 80%,#cfe0ff,transparent),
+    radial-gradient(1px 1px at 65% 45%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 10% 70%,#fff,transparent),
+    radial-gradient(1px 1px at 90% 75%,#ffe9b0,transparent);
+    background-repeat:repeat;background-size:600px 600px;opacity:.7;
+    animation:tw 4s ease-in-out infinite alternate;}
+  .stars2{background-image:
+    radial-gradient(1px 1px at 25% 15%,#fff,transparent),
+    radial-gradient(1px 1px at 75% 55%,#bcd2ff,transparent),
+    radial-gradient(1.5px 1.5px at 45% 35%,#fff,transparent),
+    radial-gradient(1px 1px at 15% 85%,#fff,transparent),
+    radial-gradient(1px 1px at 85% 30%,#ffe9b0,transparent);
+    background-repeat:repeat;background-size:400px 400px;opacity:.5;
+    animation:tw 6s ease-in-out infinite alternate-reverse;}
+  @keyframes tw{from{opacity:.35}to{opacity:.85}}
+  .wrap{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:18px 14px 60px;}
+  header{text-align:center;margin-bottom:8px;}
+  h1{font-size:26px;margin:6px 0 2px;letter-spacing:1px;
+     background:linear-gradient(90deg,var(--gold),var(--pink),var(--blue));
+     -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;}
+  .sub{color:var(--muted);font-size:13px;}
+  .countdown{display:inline-block;margin-top:8px;padding:6px 14px;border-radius:999px;
+     background:var(--card2);border:1px solid var(--line);font-size:14px;}
+  .countdown b{color:var(--gold);font-size:18px;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:10px 0;}
+  .userchip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);
+     padding:6px 10px;border-radius:999px;font-size:13px;}
+  .userchip button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:0 2px;}
+  .userchip button:hover{color:var(--red);}
+  .budget{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;}
+  .budget .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .budget label{font-size:13px;color:var(--muted);}
+  .budget input{background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--txt);
+     border-radius:8px;padding:6px 8px;width:110px;font-size:14px;}
+  .bar{height:10px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden;margin-top:10px;}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--gold));width:0;}
+  .bstats{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px;}
+  .progress-all{font-size:13px;color:var(--muted);text-align:center;margin:6px 0;}
+  .progress-all b{color:var(--green);}
+  .add{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:12px 0;}
+  .add h3{margin:0 0 8px;font-size:14px;color:var(--gold);}
+  .add .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .add input,.add select{background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--txt);
+     border-radius:8px;padding:9px 8px;font-size:14px;width:100%;}
+  .add .full{grid-column:1/-1;}
+  .btn{cursor:pointer;border:none;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;
+     background:linear-gradient(90deg,var(--pink),var(--gold));color:#3a1a2a;}
+  .btn:active{transform:translateY(1px);}
+  .btn.ghost{background:var(--card2);color:var(--txt);border:1px solid var(--line);font-weight:600;}
+  .cat{margin:16px 0 6px;font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px;}
+  .cat .pc{font-size:12px;color:var(--muted);font-weight:500;}
+  .task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0;}
+  .task.done{opacity:.62;}
+  .task .l1{display:flex;align-items:center;gap:10px;}
+  .chk{width:22px;height:22px;border-radius:7px;border:2px solid var(--blue);flex:0 0 auto;
+     display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:#0b1026;background:transparent;}
+  .task.done .chk{background:var(--green);border-color:var(--green);}
+  .tname{flex:1;font-size:15px;}
+  .task.done .tname{text-decoration:line-through;color:var(--muted);}
+  .ico{cursor:pointer;background:none;border:none;font-size:15px;padding:4px;opacity:.8;}
+  .ico:hover{opacity:1;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;align-items:center;font-size:12px;color:var(--muted);}
+  .meta select,.meta input{background:rgba(0,0,0,.25);border:1px solid var(--line);color:var(--txt);
+     border-radius:7px;padding:5px 6px;font-size:12px;}
+  .meta input.amt{width:84px;}
+  .pill{background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 9px;}
+  .who-爸爸{color:var(--blue);} .who-妈妈{color:var(--pink);} .who-女儿{color:var(--gold);} .who-共同{color:var(--green);}
+  .sync{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:5;
+     display:flex;align-items:center;gap:8px;background:rgba(10,14,40,.85);border:1px solid var(--line);
+     border-radius:999px;padding:7px 14px;font-size:12px;backdrop-filter:blur(6px);}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--green);}
+  .dot.wait{background:var(--gold);animation:blink 1s infinite;}
+  .dot.err{background:var(--red);animation:blink .6s infinite;}
+  @keyframes blink{50%{opacity:.25}}
+  .sync button{background:none;border:none;color:var(--blue);cursor:pointer;font-size:12px;}
+  .banner{position:fixed;top:0;left:0;right:0;z-index:8;background:var(--red);color:#2a0d12;
+     text-align:center;padding:8px;font-size:13px;font-weight:700;display:none;}
+  /* login */
+  .login{position:fixed;inset:0;z-index:20;background:radial-gradient(800px 600px at 50% 20%,#1b2350,var(--bg));
+     display:flex;align-items:center;justify-content:center;padding:20px;}
+  .login .box{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);
+     border-radius:18px;padding:22px;text-align:center;backdrop-filter:blur(8px);}
+  .login h2{margin:6px 0 2px;font-size:20px;}
+  .login .roles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+  .role{cursor:pointer;border:1px solid var(--line);background:var(--card2);border-radius:12px;
+     padding:14px 8px;font-size:15px;font-weight:700;transition:.15s;}
+  .role:hover{border-color:var(--gold);transform:translateY(-2px);}
+  .role .e{font-size:26px;display:block;margin-bottom:4px;}
+  .login input{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);color:var(--txt);
+     border-radius:10px;padding:11px;font-size:15px;margin:6px 0;text-align:center;}
+  .login .msg{color:var(--red);font-size:13px;min-height:18px;margin-top:4px;}
+  .login .hint{color:var(--muted);font-size:11px;margin-top:10px;line-height:1.5;}
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.6);display:none;
+     align-items:center;justify-content:center;padding:18px;}
+  .modal .m{width:100%;max-width:360px;background:var(--bg2);border:1px solid var(--line);
+     border-radius:16px;padding:18px;}
+  .modal h3{margin:0 0 12px;font-size:16px;color:var(--gold);}
+  .modal label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px;}
+  .modal input,.modal select{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);
+     color:var(--txt);border-radius:9px;padding:9px;font-size:14px;}
+  .modal .acts{display:flex;gap:10px;margin-top:16px;}
+  .note{font-size:11px;color:var(--muted);text-align:center;margin-top:14px;line-height:1.6;}
+  .readonly-tag{display:inline-block;font-size:11px;color:var(--gold);border:1px solid var(--line);
+     border-radius:999px;padding:2px 8px;margin-left:6px;}
+</style>
+</head>
+<body>
+<div class="stars"></div><div class="stars2"></div>
+<div class="banner" id="offlineBanner">⚠ 网络已断开，改动将在恢复后自动同步</div>
+
+<!-- 登录 -->
+<div class="login" id="loginScreen">
+  <div class="box">
+    <div style="font-size:40px">⭐🎂⭐</div>
+    <h2>Maria 的 10 岁生日派对</h2>
+    <div class="sub">派对筹备清单 · 爸爸 / 妈妈 / 女儿 共同协作</div>
+    <div class="roles" id="roleGrid"></div>
+    <input id="pwdInput" type="password" placeholder="请输入密码（游客无需密码）" inputmode="text" />
+    <div class="msg" id="loginMsg"></div>
+    <button class="btn" style="width:100%" id="loginBtn">进入清单</button>
+    <div class="hint">爸爸 / 妈妈 / 女儿 需密码登录后可编辑；游客仅查看。<br/>数据保存在 GitHub 仓库，多人实时同步。</div>
+  </div>
+</div>
+
+<!-- 主界面 -->
+<div class="wrap" id="app" style="display:none">
+  <header>
+    <h1>🎉 Maria 10岁生日派对清单</h1>
+    <div class="sub">一起把派对安排得明明白白 ✨</div>
+    <div class="countdown">距离生日还有 <b id="cdDays">--</b> 天 · <span id="cdDate">2026-07-12 周日</span></div>
+  </header>
+
+  <div class="topbar">
+    <div class="userchip" id="userChip"></div>
+    <div id="editTag"></div>
+  </div>
+
+  <div class="budget">
+    <div class="row">
+      <label>总预算 ¥</label>
+      <input id="budgetInput" type="number" min="0" step="10" />
+      <span class="pill">已花 <b id="spent">0</b></span>
+      <span class="pill">剩余 <b id="remain">0</b></span>
+    </div>
+    <div class="bar"><i id="barFill"></i></div>
+    <div class="bstats"><span id="bStats"></span></div>
+  </div>
+
+  <div class="progress-all" id="progressAll"></div>
+
+  <div class="add" id="addBox">
+    <h3>➕ 添加筹备事项</h3>
+    <div class="grid">
+      <input id="aName" placeholder="事项名称" class="full" />
+      <select id="aCat">
+        <option value="📋事前筹备">📋 事前筹备</option>
+        <option value="🛒采购物品">🛒 采购物品</option>
+        <option value="🎂派对当天">🎂 派对当天</option>
+      </select>
+      <select id="aWho">
+        <option value="爸爸">👨 爸爸</option>
+        <option value="妈妈">👩 妈妈</option>
+        <option value="女儿">👧 女儿</option>
+        <option value="共同">👨‍👩‍👧 共同</option>
+      </select>
+      <select id="aPlan" class="full"></select>
+      <button class="btn full" id="addBtn">添加</button>
+    </div>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="note" id="backendNote"></div>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="modal" id="editModal">
+  <div class="m">
+    <h3>✎ 编辑事项</h3>
+    <label>名称</label><input id="eName" />
+    <label>分类</label>
+    <select id="eCat">
+      <option value="📋事前筹备">📋 事前筹备</option>
+      <option value="🛒采购物品">🛒 采购物品</option>
+      <option value="🎂派对当天">🎂 派对当天</option>
+    </select>
+    <div class="acts">
+      <button class="btn ghost" style="flex:1" id="eCancel">取消</button>
+      <button class="btn" style="flex:1" id="eSave">保存</button>
+    </div>
+  </div>
+</div>
+
+<div class="sync">
+  <span class="dot ok" id="syncDot"></span>
+  <span id="syncText">已同步</span>
+  <button id="syncRetry" style="display:none">重试</button>
+</div>
+
+<script>
+/* ===================== 配置 ===================== */
+const REPO = 'marioxue/maria-birthday';
+const DATA_PATH = 'data.json';
+const API = 'https://api.github.com';
+// ⚠ 仅限本仓库、Contents:write 的细粒度令牌（手动在 GitHub 网页创建后填入）。
+// 注意：此令牌会随公开网页源码可见，但仅能读写本仓库的 data.json，无账号其他权限。
+const BACKEND_TOKEN = '__FILL_TOKEN__';
+const TOKEN_READY = BACKEND_TOKEN && BACKEND_TOKEN.indexOf('__FILL') === -1;
+
+const BIRTHDAY = new Date(2026, 6, 12); // 2026-07-12 周日
+const WEEK = ['周日','周一','周二','周三','周四','周五','周六'];
+
+/* ===================== 种子数据（离线兜底，确保永不空白） ===================== */
+const SEED_STATE = {
+  version: 69,
+  users: {
+    "爸爸": {"salt":"331a3eefad7de045","hash":"678abb6f407d3dc838beb391512973b8a2f0bf9746698630093d4973ffc7c7cf"},
+    "女儿": {"salt":"ce2a94fd4e6dbfe9","hash":"f3cee55ea347591a72d5c2c76f26beddf6bba690bb990e9b8b055d127643e0fb"},
+    "妈妈": {"salt":"13358361f06b317e","hash":"4a95eb0599d308ccfcd0ce1c853e942566bd15b60ab7b3f83b8ba50614e71511"}
+  },
+  tasks: [
+    {id:1,category:"📋事前筹备",name:"确定派对地点+时间",completed:true,assignee:"爸爸",planDay:"周一",completedDay:"周二",amount:399},
+    {id:2,category:"📋事前筹备",name:"发送邀请函",completed:true,assignee:"爸爸",planDay:"",completedDay:"周一"},
+    {id:3,category:"📋事前筹备",name:"准备小丑游戏",completed:true,assignee:"爸爸",planDay:"周五",completedDay:"周四",amount:299},
+    {id:4,category:"🛒采购物品",name:"气球",completed:true,assignee:"女儿",planDay:"周二",completedDay:"周三"},
+    {id:5,category:"🛒采购物品",name:"横幅",completed:true,assignee:"爸爸",planDay:"周三",completedDay:"周三",amount:48},
+    {id:6,category:"🛒采购物品",name:"零食",completed:true,assignee:"女儿",planDay:"周二",completedDay:"周二",amount:50},
+    {id:7,category:"🛒采购物品",name:"蛋糕",completed:false,assignee:"女儿",planDay:"周二",completedDay:""},
+    {id:8,category:"🛒采购物品",name:"火锅烤串？",completed:false,assignee:"共同",planDay:"",completedDay:""},
+    {id:9,category:"🛒采购物品",name:"果汁",completed:true,assignee:"女儿",planDay:"周二",completedDay:"周二",amount:35},
+    {id:10,category:"🛒采购物品",name:"伴手礼",completed:true,assignee:"女儿",planDay:"",completedDay:"周三",amount:205},
+    {id:11,category:"🎂派对当天",name:"布置派对现场",completed:false,assignee:"共同",planDay:"周日",completedDay:""},
+    {id:12,category:"🎂派对当天",name:"准备火锅晚餐",completed:false,assignee:"爸爸",planDay:"周日",completedDay:""},
+    {id:13,category:"🎂派对当天",name:"切蛋糕仪式",completed:false,assignee:"共同",planDay:"周日",completedDay:""},
+    {id:14,category:"🎂派对当天",name:"拍摄全家福",completed:false,assignee:"爸爸",planDay:"周日",completedDay:""},
+    {id:1783342425376,category:"📋事前筹备",name:"制作邀请函",completed:true,assignee:"女儿",planDay:"周一",completedDay:"周一"},
+    {id:1783346681087,category:"🎂派对当天",name:"小丑表演",completed:false,assignee:"爸爸",planDay:"周日",completedDay:""},
+    {id:1783352304090,category:"🛒采购物品",name:"防蚊子",completed:true,assignee:"女儿",planDay:"周二",completedDay:"周二",amount:10},
+    {id:1783474931240,category:"🛒采购物品",name:"防晒霜",completed:true,assignee:"女儿",planDay:"周五",completedDay:"周四",amount:0}
+  ],
+  budget: 1000
+};
+
+/* ===================== 运行时状态 ===================== */
+let state = JSON.parse(JSON.stringify(SEED_STATE));
+let currentUser = null;       // 角色名
+let canEdit = false;
+let cloudSha = null;          // 上次拉取的 sha（乐观并发）
+let syncTimer = null;
+let editId = null;
+
+/* ===================== 工具 ===================== */
+function $(id){ return document.getElementById(id); }
+function weekday(){ return WEEK[new Date().getDay()]; }
+function b64encode(str){ return btoa(unescape(encodeURIComponent(str))); }
+function b64decode(b64){ return decodeURIComponent(escape(atob(b64))); }
+async function sha256(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+function uid(){ return Date.now()*1000 + Math.floor(Math.random()*1000); }
+function checkPwd(role, pass){
+  const u = state.users[role]; if(!u) return false;
+  return sha256(pass + '|' + u.salt).then(h => h === u.hash);
+}
+
+/* ===================== 后端（GitHub 仓库做后端） ===================== */
+// 免令牌：同源静态文件读取（GitHub Pages 直接提供 /data.json）
+async function readLocal(){
+  try{
+    const r = await fetch('./data.json?t=' + Date.now(), {cache:'no-store'});
+    if(!r.ok) return null;
+    return await r.json();
+  }catch(e){ return null; }
+}
+// 带令牌：Contents API 读取（实时、绕过 Pages 缓存）
+async function pullCloud(){
+  if(!TOKEN_READY) return null;
+  const r = await fetch(`${API}/repos/${REPO}/contents/${DATA_PATH}`, {
+    headers:{ Authorization:'Bearer '+BACKEND_TOKEN, Accept:'application/vnd.github+json' }
+  });
+  if(!r.ok) throw new Error('pull '+r.status);
+  const j = await r.json();
+  cloudSha = j.sha;
+  return JSON.parse(b64decode(j.content));
+}
+async function pushCloud(next){
+  if(!TOKEN_READY) throw new Error('NO_TOKEN');
+  // 先拉最新 sha，避免并发覆盖
+  try{ await pullCloud(); }catch(e){}
+  const body = {
+    message: 'update birthday todo by ' + (currentUser||'anon'),
+    content: b64encode(JSON.stringify(next)),
+    branch: 'main'
+  };
+  if(cloudSha) body.sha = cloudSha;
+  const r = await fetch(`${API}/repos/${REPO}/contents/${DATA_PATH}`, {
+    method:'PUT',
+    headers:{ Authorization:'Bearer '+BACKEND_TOKEN, Accept:'application/vnd.github+json',
+      'Content-Type':'application/json' },
+    body: JSON.stringify(body)
+  });
+  if(!r.ok) throw new Error('push '+r.status);
+  const j = await r.json();
+  cloudSha = j.content ? j.content.sha : cloudSha;
+  return true;
+}
+
+/* ===================== 同步 ===================== */
+function setSync(kind, text){
+  const dot = $('syncDot'), txt = $('syncText'), retry = $('syncRetry');
+  dot.className = 'dot ' + (kind==='ok'?'ok':kind==='wait'?'wait':'err');
+  txt.textContent = text;
+  retry.style.display = kind==='err' ? 'inline' : 'none';
+}
+async function applyRemote(remote){
+  if(!remote || typeof remote.version !== 'number') return;
+  if(remote.version > state.version){
+    state = remote;
+    render();
+  }
+}
+async function pullOnce(){
+  try{
+    const remote = await pullCloud();
+    if(remote){ await applyRemote(remote); setSync('ok','已同步'); }
+  }catch(e){ setSync('err','同步失败（点重试）'); }
+}
+async function pushOnce(){
+  if(!canEdit) return;
+  if(!TOKEN_READY){ setSync('err','未配置写入令牌'); return; }
+  setSync('wait','保存中…');
+  try{
+    state.version = (state.version||0) + 1;
+    await pushCloud(state);
+    setSync('ok','已同步');
+  }catch(e){
+    state.version = (state.version||0) - 1;
+    setSync('err','保存失败（点重试）');
+  }
+}
+function startSync(){
+  stopSync();
+  if(TOKEN_READY){
+    syncTimer = setInterval(pullOnce, 5000);
+    window.addEventListener('focus', pullOnce);
+    document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) pullOnce(); });
+    window.addEventListener('online', ()=>{ setSync('wait','重连中…'); pullOnce(); });
+  }
+}
+function stopSync(){ if(syncTimer){ clearInterval(syncTimer); syncTimer=null; } }
+
+/* ===================== 渲染 ===================== */
+function render(){
+  // 倒计时
+  const today = new Date(); today.setHours(0,0,0,0);
+  const days = Math.max(0, Math.round((BIRTHDAY - today)/86400000));
+  $('cdDays').textContent = days;
+  $('cdDate').textContent = '2026-07-12 ' + WEEK[BIRTHDAY.getDay()];
+
+  // 用户条
+  const chip = $('userChip');
+  if(currentUser){
+    chip.innerHTML = `<span>${roleEmoji(currentUser)} ${currentUser}</span><button id="logoutBtn">退出</button>`;
+    $('logoutBtn').onclick = logout;
+  } else chip.innerHTML = '';
+  $('editTag').innerHTML = canEdit ? '' : (currentUser? '<span class="readonly-tag">查看模式</span>':'');
+
+  // 预算
+  const budget = Number(state.budget)||0;
+  $('budgetInput').value = budget;
+  const spent = state.tasks.reduce((s,t)=> s + (Number(t.amount)||0), 0);
+  const remain = budget - spent;
+  $('spent').textContent = spent;
+  $('remain').textContent = remain;
+  const pct = budget>0 ? Math.min(100, Math.round(spent/budget*100)) : 0;
+  $('barFill').style.width = pct + '%';
+  $('bStats').textContent = `预算使用 ${pct}%` + (remain<0 ? ' · ⚠ 已超支 '+Math.abs(remain) : '');
+
+  // 总体进度
+  const total = state.tasks.length;
+  const done = state.tasks.filter(t=>t.completed).length;
+  $('progressAll').innerHTML = `总进度：<b>${done}/${total}</b> 完成` +
+     (total? `（${Math.round(done/total*100)}%）`:'');
+
+  // 列表（按分类分组）
+  const list = $('list'); list.innerHTML = '';
+  const cats = [];
+  state.tasks.forEach(t=>{ if(cats.indexOf(t.category)===-1) cats.push(t.category); });
+  cats.forEach(cat=>{
+    const items = state.tasks.filter(t=>t.category===cat);
+    const cd = items.filter(t=>t.completed).length;
+    const h = document.createElement('div'); h.className='cat';
+    h.innerHTML = `<span>${cat}</span><span class="pc">${cd}/${items.length}</span>`;
+    list.appendChild(h);
+    items.forEach(t=> list.appendChild(taskEl(t)));
+  });
+
+  // 后端说明
+  $('backendNote').innerHTML = TOKEN_READY
+    ? '数据实时保存在 GitHub 仓库 <code>marioxue/maria-birthday</code>，多人同步。'
+    : '当前为只读预览（未配置写入令牌）。如需多人编辑，请由爸爸配置仓库细粒度令牌。';
+}
+function taskEl(t){
+  const el = document.createElement('div');
+  el.className = 'task' + (t.completed?' done':'');
+  const who = t.assignee||'共同';
+  el.innerHTML = `
+    <div class="l1">
+      <div class="chk" data-act="chk">${t.completed?'✓':''}</div>
+      <div class="tname">${escapeHtml(t.name)}</div>
+      ${canEdit?'<button class="ico" data-act="edit" title="编辑">✎</button>':''}
+      ${canEdit?'<button class="ico" data-act="del" title="删除">🗑</button>':''}
+    </div>
+    <div class="meta">
+      <span class="pill who-${who}">${roleEmoji(who)} ${who}</span>
+      <label>负责人 <select data-act="who">
+        ${['爸爸','妈妈','女儿','共同'].map(w=>`<option ${w===who?'selected':''}>${w}</option>`).join('')}
+      </select></label>
+      <label>计划 <select data-act="plan">${weekOptions(t.planDay)}</select></label>
+      <label>完成 <select data-act="cday">${weekOptions(t.completedDay)}</select></label>
+      <label>金额 ¥<input class="amt" type="number" min="0" data-act="amt" value="${t.amount!=null?t.amount:''}"></label>
+    </div>`;
+  el.querySelector('[data-act="chk"]').onclick = ()=>{ toggleDone(t.id); };
+  if(canEdit){
+    el.querySelector('[data-act="edit"]').onclick = ()=> openEdit(t.id);
+    el.querySelector('[data-act="del"]').onclick = ()=> delTask(t.id);
+    el.querySelector('[data-act="who"]').onchange = e=>{ t.assignee=e.target.value; saveChange(); };
+    el.querySelector('[data-act="plan"]').onchange = e=>{ t.planDay=e.target.value; saveChange(); };
+    el.querySelector('[data-act="cday"]').onchange = e=>{ t.completedDay=e.target.value; saveChange(); };
+    el.querySelector('[data-act="amt"]').onchange = e=>{ t.amount=Number(e.target.value)||0; saveChange(); };
+  }
+  return el;
+}
+function weekOptions(sel){
+  let o = '<option value="">—</option>';
+  WEEK.forEach(w=> o += `<option ${w===sel?'selected':''}>${w}</option>`);
+  return o;
+}
+function roleEmoji(r){ return r==='爸爸'?'👨':r==='妈妈'?'👩':r==='女儿'?'👧':r==='共同'?'👨‍👩‍👧':'👀'; }
+function escapeHtml(s){ return (s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ===================== 操作 ===================== */
+function toggleDone(id){
+  if(!canEdit) return;
+  const t = state.tasks.find(x=>x.id===id); if(!t) return;
+  t.completed = !t.completed;
+  if(t.completed && !t.completedDay) t.completedDay = weekday();
+  if(!t.completed) t.completedDay = '';
+  render(); saveChange();
+}
+function delTask(id){
+  if(!canEdit) return;
+  if(!confirm('确定删除该事项？')) return;
+  state.tasks = state.tasks.filter(x=>x.id!==id);
+  render(); saveChange();
+}
+function addTask(){
+  if(!canEdit) return;
+  const name = $('aName').value.trim();
+  if(!name){ $('aName').focus(); return; }
+  state.tasks.push({
+    id: uid(), category: $('aCat').value, name, completed:false,
+    assignee: $('aWho').value, planDay: $('aPlan').value, completedDay:'', amount:0
+  });
+  $('aName').value='';
+  render(); saveChange();
+}
+function openEdit(id){
+  const t = state.tasks.find(x=>x.id===id); if(!t) return;
+  editId = id; $('eName').value=t.name; $('eCat').value=t.category;
+  $('editModal').style.display='flex';
+}
+function saveEdit(){
+  const t = state.tasks.find(x=>x.id===editId); if(!t) return;
+  const n = $('eName').value.trim(); if(!n) return;
+  t.name = n; t.category = $('eCat').value;
+  $('editModal').style.display='none'; editId=null;
+  render(); saveChange();
+}
+function saveChange(){
+  if(!TOKEN_READY){ render(); setSync('err','未配置写入令牌'); return; }
+  pushOnce();
+}
+function onBudget(){
+  if(!canEdit) return;
+  state.budget = Number($('budgetInput').value)||0;
+  render(); saveChange();
+}
+
+/* ===================== 登录 ===================== */
+function buildRoles(){
+  const roles = [
+    {key:'爸爸',e:'👨',need:true},{key:'妈妈',e:'👩',need:true},
+    {key:'女儿',e:'👧',need:true},{key:'游客',e:'👀',need:false}
+  ];
+  const g = $('roleGrid'); g.innerHTML='';
+  roles.forEach(r=>{
+    const d=document.createElement('div'); d.className='role';
+    d.innerHTML=`<span class="e">${r.e}</span>${r.key}`;
+    d.onclick=()=>{ window._selRole=r; [...g.children].forEach(c=>c.style.borderColor=''); d.style.borderColor='var(--gold)';
+      $('pwdInput').style.display = r.need?'block':'none'; if(!r.need) $('pwdInput').value=''; $('loginMsg').textContent=''; };
+    g.appendChild(d);
+  });
+}
+async function doLogin(){
+  const r = window._selRole;
+  if(!r){ $('loginMsg').textContent='请先选择一个身份'; return; }
+  if(r.need){
+    const p = $('pwdInput').value;
+    if(!p){ $('loginMsg').textContent='请输入密码'; return; }
+    const ok = await checkPwd(r.key, p);
+    if(!ok){ $('loginMsg').textContent='密码错误，请重试'; return; }
+  }
+  currentUser = r.key; canEdit = (r.key!=='游客');
+  localStorage.setItem('mb_role', r.key);
+  enterApp();
+}
+function logout(){
+  currentUser=null; canEdit=false; localStorage.removeItem('mb_role');
+  $('loginScreen').style.display='flex'; $('app').style.display='none';
+  stopSync();
+}
+function enterApp(){
+  $('loginScreen').style.display='none'; $('app').style.display='block';
+  startSync(); pullOnce();
+}
+
+/* ===================== 初始化 ===================== */
+function initPlanOptions(){ const s=$('aPlan'); s.innerHTML=weekOptions(''); }
+async function boot(){
+  buildRoles(); initPlanOptions();
+  // 计划日默认空
+  $('loginBtn').onclick=doLogin;
+  $('pwdInput').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+  $('addBtn').onclick=addTask;
+  $('budgetInput').onchange=onBudget;
+  $('eCancel').onclick=()=>{ $('editModal').style.display='none'; editId=null; };
+  $('eSave').onclick=saveEdit;
+  $('syncRetry').onclick=()=>{ setSync('wait','重连中…'); pullOnce(); if(canEdit) pushOnce(); };
+  window.addEventListener('offline',()=>{ $('offlineBanner').style.display='block'; });
+  window.addEventListener('online',()=>{ $('offlineBanner').style.display='none'; });
+
+  // 先读同源 data.json（免令牌即可展示），再尝试云端同步
+  const local = await readLocal();
+  if(local && typeof local.version==='number'){ state = local; }
+  render();
+
+  // 自动登录
+  const saved = localStorage.getItem('mb_role');
+  if(saved && (state.users[saved] || saved==='游客')){
+    currentUser = saved; canEdit = (saved!=='游客'); enterApp();
+  }
+}
+boot();
+</script>
+</body>
+</html>
